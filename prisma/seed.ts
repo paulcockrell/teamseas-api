@@ -12,6 +12,9 @@ async function main() {
   });
 
   console.log({ bob });
+
+  const res = await prisma.donation.findMany();
+  console.log(res);
 }
 
 main()

@@ -14,6 +14,9 @@ import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin
       plugins: [ApolloServerPluginLandingPageLocalDefault()],
       typePaths: ['./**/*.graphql'],
       resolvers: { DateTime: GraphQLISODateTime },
+      subscriptions: {
+        'graphql-ws': true,
+      },
     }),
     DonationsModule,
   ],

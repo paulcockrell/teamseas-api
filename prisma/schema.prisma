@@ -1,11 +1,12 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
+}
+
+generator nestgrapql {
+  provider               = "node node_modules/prisma-nestjs-graphql"
+  output                 = "../src/@generated/prisma-nestjs-graphql"
+  fields_Validator_from  = "class-validator"
+  fields_Validator_input = true
 }
 
 datasource db {
@@ -16,7 +17,9 @@ datasource db {
 model Donation {
   id          Int      @id @default(autoincrement())
   count       Int
+  /// @Validator.MinLength(3)
   displayName String
+  /// @Validator.IsEmail()
   email       String
   mobile      String?
   message     String?
